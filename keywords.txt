@@ -1,0 +1,32 @@
+###########################################
+# Syntax Coloring Map For DTH_I2CRelay library
+###########################################
+
+###########################################
+# Datatypes (KEYWORD1)
+###########################################
+
+DTH_I2CRelay	KEYWORD1
+
+###########################################
+# Constants macro
+###########################################
+I2CRelay_0	LITERAL1
+I2CRelay_1	LITERAL1
+I2CRelay_2	LITERAL1
+I2CRelay_3	LITERAL1
+I2CRelay_4	LITERAL1
+I2CRelay_5	LITERAL1
+I2CRelay_6	LITERAL1
+I2CRelay_7	LITERAL1
+
+###########################################
+# Methods and Functions (KEYWORD2)
+###########################################
+begin	KEYWORD2
+readRelayState	KEYWORD2
+turnOnRelay	KEYWORD2
+turnOnAllRelay	KEYWORD2
+turnOffAllRelay	KEYWORD2
+turnOffRelay	KEYWORD2
+controlRelay	KEYWORD2
