@@ -25,14 +25,22 @@
 
 
 DTH_I2CRelay::DTH_I2CRelay()
-{	   
-	_relay_state = 0;	
+{
+	on_value = ON_VALUE;
+	if(on_value == 0)
+		_relay_state = 0xFF;	
+	else
+		_relay_state = 0x00;
 }
 
 DTH_I2CRelay::DTH_I2CRelay(uint8_t addr)
 {	
 	_i2c_addr = addr;	
-	_relay_state = 0;	
+	on_value = ON_VALUE;
+	if(on_value == 0)
+		_relay_state = 0xFF;	
+	else
+		_relay_state = 0x00;	
 	begin(addr);
 }
 
@@ -59,20 +67,29 @@ uint8_t DTH_I2CRelay::readRelayState(uint8_t num)
 }
 
 void DTH_I2CRelay::turnOnRelay(uint8_t bitwise)
-{		
-	_relay_state |= bitwise;
+{	
+	if(on_value == 0)
+		_relay_state &= ~bitwise;
+	else
+		_relay_state |= bitwise;
 	writeDataToPCF8574(_i2c_addr, _relay_state);
 }
 
 void DTH_I2CRelay::turnOffRelay(uint8_t bitwise)
-{		
-	_relay_state &= ~bitwise;
+{	
+	if(on_value == 0)
+		_relay_state |= bitwise;
+	else
+		_relay_state &= ~bitwise;
 	writeDataToPCF8574(_i2c_addr, _relay_state);
 }
 
 void DTH_I2CRelay::turnOnAllRelay()
-{
-	_relay_state = 0xff;
+{	
+	if(on_value != 0)
+		_relay_state = 0xFF;	
+	else
+		_relay_state = 0x00;
 	writeDataToPCF8574(_i2c_addr, _relay_state);
 }
 
@@ -80,7 +97,10 @@ void DTH_I2CRelay::turnOnAllRelay()
 
 void DTH_I2CRelay::turnOffAllRelay()
 {
-	_relay_state = 0x00;
+	if(on_value == 0)
+		_relay_state = 0xFF;	
+	else
+		_relay_state = 0x00;
 	writeDataToPCF8574(_i2c_addr, _relay_state);
 }
 

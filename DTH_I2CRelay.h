@@ -40,7 +40,11 @@
 #define I2CRelay_5 (1<<5)
 #define I2CRelay_6 (1<<6)
 #define I2CRelay_7 (1<<7)
- 
+
+#ifndef ON_VALUE
+#define ON_VALUE 0
+#endif
+
 /*------------------------------------------------------------------*
  *                        Class declaration                         *
  *------------------------------------------------------------------*/
@@ -66,6 +70,7 @@ class DTH_I2CRelay {
 		/* I2C address of PCF5784 */
 		uint8_t _i2c_addr;	    
 		uint8_t _relay_state;
+		uint8_t on_value;
 };
 
 #endif //DTH_I2C_RELAY_H_
